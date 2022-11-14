@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pure JavaScript Date Functions</title>
+<script language="JavaScript" src="date.js"></script>
+</head>
+<body>
+
+<h1>Pure JavaScript Date Functions</h1>
+
+<table width="100%" border="0"><tbody><tr><td width="100%" align="LEFT" valign="TOP">
+<u><b>Description:</b></u>
+<br>
+These functions are very useful when dealing with any type of date fields.
+<p>
+They use the same format strings as the java.text.SimpleDateFormat class, with a few minor exceptions.
+</p><p>
+Functions include:
+</p><ul>
+	<li>isDate() - Check if a date is valid
+	</li><li>compareDates() - See if one date is greater than another
+	</li><li>formatDate() - Output a Date() object in any format
+	</li><li>getDateFromFormat() - Parse a date string and return time in ms representing date object
+</li></ul>
+
+<br>
+<u><b>Example:</b></u>
+<br>
+(Note the difference between M (month) and m (minute)!!!)
+<br>
+<form>
+<table border="0">
+<tbody><tr>
+	<td>&nbsp;</td>
+	<td><b>Date String</b></td>
+	<td><b>Date Format</b></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td><b>1</b>: </td>
+	<td><input type="text" name="string1" value="January 1, 1900"></td>
+	<td><input type="text" name="format1" value="MMM d, y"></td>
+	<td><input type="button" value="isDate()" onclick="alert(isDate(this.form.string1.value,this.form.format1.value))"></td>
+</tr>
+<tr>
+	<td><b>2</b>: </td>
+	<td><input type="text" name="string2" value="December 31, 2000"></td>
+	<td><input type="text" name="format2" value="MMM d, y"></td>
+	<td><input type="button" value="isDate()" onclick="alert(isDate(this.form.string2.value,this.form.format2.value))"></td>
+</tr>
+<tr>
+	<td></td>
+	<td><input type="button" value="compareDates(1,2)" onclick="alert('1 = Date1 is greater\n0 = Date1 is not greater\n-1 = Date format error');alert(compareDates(this.form.string1.value,this.form.format1.value,this.form.string2.value,this.form.format2.value))"></td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+
+<table border="0">
+<tbody><tr>
+	<td><b>Date Format</b></td>
+	<td></td>
+	<td><b>Output Current Date</b></td>
+</tr>
+<tr>
+	<td><input type="text" name="format3" value="MMM d, y"></td>
+	<td><input type="button" value="formatDate()" onclick="this.form.output3.value=formatDate(new Date(),this.form.format3.value)"></td>
+	<td><input type="text" name="output3" value="" size="30"></td>
+</tr>
+</tbody></table>
+
+<table border="0">
+<tbody><tr>
+	<td><b>Date String</b></td>
+	<td><b>Date Format</b></td>
+	<td><b>Convert To Format</b></td>
+	<td><b>Output</b></td>
+</tr>
+<tr>
+	<td><input type="text" name="string4" value="January 1, 2001" size="15"></td>
+	<td><input type="text" name="format4" value="MMM d, y" size="15"></td>
+	<td><input type="text" name="newformat4" value="MM/dd/y" size="15"></td>
+	<td><input type="text" name="output4" value="" size="15"></td>
+</tr>
+<tr>
+	<td colspan="4" align="center"><input type="button" value="Convert" onclick="this.form.output4.value=formatDate(new Date(getDateFromFormat(this.form.string4.value,this.form.format4.value)),this.form.newformat4.value)"></td>
+</tr>
+</tbody></table>
+
+<table border="0">
+<tbody><tr>
+	<td><b>Free-Form Date Field</b></td>
+	<td></td>
+	<td><b>Parsed Date</b></td>
+</tr>
+<tr>
+	<td><input type="text" name="date5" value=""></td>
+	<td><input type="button" value="parseDate()" onclick="var d=parseDate(this.form.date5.value);if(d==null){alert('Date string doesn\'t match any recognized formats!');} else{this.form.output5.value=formatDate(d,'MMM dd, yyyy');}"></td>
+	<td><input type="text" name="output5" value="" size="30"></td>
+</tr>
+</tbody>
+</table>
+<table border="0" bgcolor="#f0f0f0"><tbody><tr><td><pre>The format string consists of the following abbreviations:
+Field        | Full Form          | Short Form
+-------------|--------------------|-----------------------
+Year         | yyyy (4 digits)    | yy (2 digits), y (2 or 4 digits)
+Month        | MMM (name or abbr.)| MM (2 digits), M (1 or 2 digits)
+             | NNN (abbr.)        |
+Day of Month | dd (2 digits)      | d (1 or 2 digits)
+Day of Week  | EE (name)          | E (abbr)
+Hour (1-12)  | hh (2 digits)      | h (1 or 2 digits)
+Hour (0-23)  | HH (2 digits)      | H (1 or 2 digits)
+Hour (0-11)  | KK (2 digits)      | K (1 or 2 digits)
+Hour (1-24)  | kk (2 digits)      | k (1 or 2 digits)
+Minute       | mm (2 digits)      | m (1 or 2 digits)
+Second       | ss (2 digits)      | s (1 or 2 digits)
+AM/PM        | a                  |
+
+NOTE THE DIFFERENCE BETWEEN MM and mm! Month=MM, not mm!
+
+Examples:
+ "MMM d, y" matches: January 01, 2000
+                     Dec 1, 1900
+                     Nov 20, 00
+ "M/d/yy"   matches: 01/20/00
+                     9/2/00
+ "MMM dd, yyyy hh:mm:ssa" matches: "January 01, 2000 12:30:45AM"</pre></td></tr></tbody></table>
+</form>
+</td><td valign="TOP">
+</td></tr>
+</tbody>
+</table>
+</body>
+</html>
+
+
